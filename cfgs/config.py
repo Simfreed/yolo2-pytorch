@@ -1,7 +1,7 @@
 import os
 from .config_voc import *  # noqa
 from .exps.darknet19_exp1 import *  # noqa
-
+from .exps.motortrack import *
 
 def mkdir(path, max_depth=3):
     parent, child = os.path.split(path)

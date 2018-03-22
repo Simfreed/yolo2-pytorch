@@ -8,7 +8,7 @@ from datasets.pascal_voc import VOCDataset
 import utils.yolo as yolo_utils
 import utils.network as net_utils
 from utils.timer import Timer
-import cfgs.config as cfg
+import cfgs.motor_config as cfg
 from random import randint
 
 try:
@@ -18,7 +18,7 @@ except ImportError:
 
 
 # data loader
-imdb = VOCDataset(cfg.imdb_train, cfg.DATA_DIR, cfg.train_batch_size,
+imdb = MotorDataset(cfg.imdb_train, cfg.DATA_DIR, cfg.train_batch_size,
                   yolo_utils.preprocess_train, processes=2, shuffle=True,
                   dst_size=cfg.multi_scale_inp_size)
 # dst_size=cfg.inp_size)
