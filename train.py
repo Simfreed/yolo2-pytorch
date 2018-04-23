@@ -4,11 +4,11 @@ import datetime
 
 from darknet import Darknet19
 
-from datasets.pascal_voc import VOCDataset
+from datasets.motor_dataset import MotorDataset
 import utils.yolo as yolo_utils
 import utils.network as net_utils
 from utils.timer import Timer
-import cfgs.motor_config as cfg
+import cfgs.config as cfg
 from random import randint
 
 try:
@@ -19,7 +19,7 @@ except ImportError:
 
 # data loader
 imdb = MotorDataset(cfg.imdb_train, cfg.DATA_DIR, cfg.train_batch_size,
-                  yolo_utils.preprocess_train, processes=2, shuffle=True,
+                  yolo_utils.preprocess_train, processes=3, shuffle=True,
                   dst_size=cfg.multi_scale_inp_size)
 # dst_size=cfg.inp_size)
 print('load data succ...')
@@ -65,7 +65,7 @@ bbox_loss, iou_loss, cls_loss = 0., 0., 0.
 cnt = 0
 t = Timer()
 step_cnt = 0
-size_index = 0
+size_index = 6
 for step in range(start_epoch * imdb.batch_per_epoch,
                   cfg.max_epoch * imdb.batch_per_epoch):
     t.tic()

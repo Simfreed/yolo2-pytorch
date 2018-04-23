@@ -53,6 +53,7 @@ class ImageDataset(object):
         i = 0
         while i < self.batch_size:
             try:
+                #print("self.gen = {0}".format(self.gen))
                 images, gt_boxes, classes, dontcare, origin_im = next(self.gen)
                 images = image_resize(images, size_index)
                 batch['images'].append(images)
@@ -65,6 +66,8 @@ class ImageDataset(object):
                 indexes = np.arange(len(self.image_names), dtype=np.int)
                 if self._shuffle:
                     np.random.shuffle(indexes)
+                #print("indexes = {0}".format(indexes))
+                #print("image_names[0] = {0}".format(self.image_names[0]))
                 self.gen = self.pool.imap(partial(self._im_processor,
                                                   size_index=size_index),
                                           ([self.image_names[i],

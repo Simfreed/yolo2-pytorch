@@ -1,7 +1,8 @@
 import os
-from .config_voc import *  # noqa
-from .exps.darknet19_exp1 import *  # noqa
-from .exps.motortrack import *
+# from .config_voc import *  # noqa
+from .config_track import *  # noqa
+#from .exps.darknet19_exp1 import *  # noqa
+from .exps.track import *
 
 def mkdir(path, max_depth=3):
     parent, child = os.path.split(path)
@@ -63,17 +64,19 @@ thresh = 0.3
 # dir config
 ############################
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+#outdir = '/project/weare-dinner/simonfreedman/cytomod/out'
+#DATA_DIR = os.path.join(outdir, 'structs/dens_dens/mkoff0.1_mkend0.1/sd1e7/mdens0.00_xldens1.5/restart_more_motors_long_kend10/seed1e6')
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
 MODEL_DIR = os.path.join(ROOT_DIR, 'models')
 TRAIN_DIR = os.path.join(MODEL_DIR, 'training')
 TEST_DIR = os.path.join(MODEL_DIR, 'testing')
 
-trained_model = os.path.join(MODEL_DIR, h5_fname)
 pretrained_model = os.path.join(MODEL_DIR, pretrained_fname)
 train_output_dir = os.path.join(TRAIN_DIR, exp_name)
 test_output_dir = os.path.join(TEST_DIR, imdb_test, h5_fname)
 mkdir(train_output_dir, max_depth=3)
 mkdir(test_output_dir, max_depth=4)
+trained_model = os.path.join(train_output_dir, h5_fname)
 
 rand_seed = 1024
 use_tensorboard = True
